@@ -17,4 +17,6 @@ public class ServicioFichero {
         pokedex.addDato(pokedex.toString());
 
     }
+
+
 }

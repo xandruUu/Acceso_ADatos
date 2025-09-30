@@ -4,6 +4,14 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Escaner {
+    public static int pedirInt(){
+        Scanner sc = new Scanner(System.in);
+        int opciones = sc.nextInt();
+
+        return opciones;
+
+    }
+
     public static String pedirString(String dato){
 
         Scanner sc = new Scanner(System.in);
