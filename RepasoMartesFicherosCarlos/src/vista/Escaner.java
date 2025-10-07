@@ -1,36 +1,28 @@
 package vista;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Escaner {
-    public static int pedirInt(){
-        Scanner sc = new Scanner(System.in);
-        int opciones = sc.nextInt();
+    private static final Scanner sc = new Scanner(System.in);
 
-        return opciones;
+    public static int pedirInt(String mensaje) {
+        int numero;
 
+        Consola.mostrarMensaje(mensaje);
+        numero = sc.nextInt();
+        sc.nextLine();
+
+        return numero;
     }
 
-    public static String pedirString(String dato){
+    public static String pedirString(String mensaje) {
 
-        Scanner sc = new Scanner(System.in);
+        String texto;
 
-        Consola.mostrarMensaje(dato);
-        String datos = sc.nextLine();
-        return datos;
+        Consola.mostrarMensaje(mensaje);
+        texto = sc.nextLine();
 
+        return texto;
     }
-
-    public static void pedirByte (byte opcion){
-
-        Scanner sc = new Scanner(System.in);
-
-        Consola.mostrarMensaje(String.valueOf(opcion));
-
-        opcion = sc.nextByte();
-
-    }
-
 
 }

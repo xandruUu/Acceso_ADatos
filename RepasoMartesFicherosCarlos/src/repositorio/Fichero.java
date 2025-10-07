@@ -1,110 +1,84 @@
 package repositorio;
+import controlador.ControladorIncidencias;
+import modelo.Incidencia;
+import vista.Consola;
 import java.io.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fichero {
 
-    private String ruta;
+    private static final String RUTA = "Datos/incidencias.txt";
 
-    public Fichero(String ruta) {
-        this.ruta = ruta;
+    public static void escribirIncidencia(Incidencia miIncidencia) throws IOException {
+
+        FileWriter miFichero=null;
+        String incidencia;
+
+        try {
+            miFichero = new FileWriter(RUTA, true);
+            incidencia = miIncidencia.getFecha() + ";" + miIncidencia.getHora() + ";" + miIncidencia.getExcepcion() + miIncidencia.getUsuario() + "\n";
+            miFichero.write(incidencia);
+
+        } finally {
+            if (miFichero != null) {
+                try {
+                    miFichero.close();
+                } catch (Exception e) {
+                    Consola.mostrarError("Error cerrando el fichero de escritura.");
+                }
+            }
+        }
     }
 
-    public String getRuta() {
-        return ruta;
-    }
 
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
+    public static List<Incidencia> leerIncidencias() {
 
-    @Override
-    public String toString() {
-        return "Fichero{" +
-                "ruta='" + ruta + '\'' +
-                '}';
-    }
-
-    public void addDato(String dato){
-
-        // anadir la linea al fichero
-
-    }
-
-    public String buscarDato(String dato, int columna){
-
-        // anadir la linea al fichero
-
-        return "";
-    }
-
-    public String buscarDato(LocalDate fechaInicial, LocalDate fechaFinal){
-
-        // anadir la linea al fichero
-
-        return "";
-    }
-
-    private static void leerFichero() {
-        String cadena = "";
-
-        FileReader fichero = null;
-        BufferedReader lector = null;
-
+        List<Incidencia> listaIncidencias = new ArrayList<>();
+        FileReader miFichero = null;
+        BufferedReader miLector = null;
+        String linea;
+        Incidencia incidencia;
 
         try {
 
-            fichero = new FileReader("Datos/incidencias.txt");
-            lector = new BufferedReader(fichero);
+            miLector = new BufferedReader(miFichero = new FileReader(RUTA));
 
-            do{
-                cadena = lector.readLine();
-                if(cadena!=null){
-                    System.out.println(cadena);
+
+            while ((linea = miLector.readLine()) != null) {
+                incidencia = ControladorIncidencias.parsearLinea(linea);
+
+                if (incidencia != null) {
+                    listaIncidencias.add(incidencia);
+
                 }
-            }while(cadena!=null);
+            }
 
         } catch (FileNotFoundException e) {
-            System.out.println("No he encontrado el fichero");
+            Consola.mostrarError("No se encontró el fichero.");
+
         } catch (IOException e) {
-            System.out.println("Error de Lectira");
+            Consola.mostrarError("Error de lectura en el fichero.");
+
         } catch (Exception e) {
-            System.out.println("Error inesperado");
+            Consola.mostrarError("Error inesperado.");
             e.printStackTrace();
-        }finally {
-            try{
-                if (lector != null){
-                    lector.close();
+
+        } finally {
+            try {
+                if (miLector != null){
+                    miLector.close();
                 }
-                if(fichero != null){
-                    fichero.close();
+                if (miFichero != null){
+                    miFichero.close();
                 }
             } catch (Exception e) {
-
+                Consola.mostrarError("Error cerrando el fichero de lectura.");
             }
         }
+
+        return listaIncidencias;
     }
 
-    private static void escribirFichero(String dato){
-        FileWriter fichero = null;
-
-        try{
-            fichero = new FileWriter("data/incidencias.txt", true   );
-            fichero.write(dato);
-        }catch (IOException e){
-            System.out.println("Error de escritura");
-
-        }finally{
-            try{
-                if(fichero !=null){
-                    fichero.close();
-                }
-
-            } catch (Exception e) {
-
-            }
-        }
-    }
 
 }
-

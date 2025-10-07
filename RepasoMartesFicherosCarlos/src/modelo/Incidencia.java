@@ -4,26 +4,16 @@ import java.time.LocalDate;
 
 public class Incidencia {
 
-    private int id ;
     private LocalDate fecha;
     private String hora;
     private String usuario;
     private String excepcion;
 
-    public Incidencia(int id, LocalDate fecha,String hora, String usuario, String excepcion) {
-        this.id = id;
+    public Incidencia(LocalDate fecha, String hora, String usuario, String excepcion) {
         this.fecha = fecha;
         this.hora = hora;
         this.usuario = usuario;
         this.excepcion = excepcion;
-    }
-
-    public double getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate getFecha() {
@@ -34,11 +24,11 @@ public class Incidencia {
         this.fecha = fecha;
     }
 
-    public String getHora(){
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(String hora){
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
@@ -61,9 +51,8 @@ public class Incidencia {
     @Override
     public String toString() {
         return "Incidencia{" +
-                "id=" + id +
                 ", fecha=" + fecha +
-                ", hora=" + hora +
+                ", hora='" + hora + '\'' +
                 ", usuario='" + usuario + '\'' +
                 ", excepcion='" + excepcion + '\'' +
                 '}';

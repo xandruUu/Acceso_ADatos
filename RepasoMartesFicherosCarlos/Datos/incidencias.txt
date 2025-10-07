@@ -1,3 +1,10 @@
 2025-09-17;14:01:00;excepción test;usuario1
 2025-09-16;15:01:00;excepción test;usuario2
-2025-09-18;16:01:00;excepción test;usuario1
+2025-09-18;16:01:00;excepción test;usuario11;2025-10-01;20:34:57; xandru;Exception
+2025-10-05;23:28:29;xandru;IOException
+2025-10-05;23:28:51;xandru;Exception
+2025-10-05;23:28:53;xandru;Exception
+2025-10-05;23:28:54;xandru;FileNotFoundException
+2025-10-06;11:49:01;alberto;Exception
+2025-10-06;12:11:52;javier;IOException
+2025-10-06;13:45:01;xandru;IOException
